@@ -2,6 +2,8 @@
 
 A lightweight, browser-based API testing tool for developers to easily make HTTP requests and debug API endpoints.
 
+![screenshot](./screenshot.png)
+
 ## Features
 
 - Support for all HTTP methods (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS)
@@ -72,3 +74,6 @@ This application works with all modern browsers that support:
 - Fetch API
 - Local Storage
 - CSS Grid and Flexbox
+
+
+[def]: ./screenshot.png
