@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Testing Tool</title>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>API Testing Tool</h1>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="request">Request</div>
+            <div class="tab" data-tab="history">History</div>
+        </div>
+        
+        <div class="tab-content active" id="request-tab">
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" id="url" placeholder="https://api.example.com/endpoint">
+            </div>
+            
+            <div class="form-group">
+                <label for="method">Method</label>
+                <select id="method">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="DELETE">DELETE</option>
+                    <option value="PATCH">PATCH</option>
+                    <option value="HEAD">HEAD</option>
+                    <option value="OPTIONS">OPTIONS</option>
+                </select>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="params">Query Params</div>
+                <div class="tab" data-tab="headers">Headers</div>
+                <div class="tab" data-tab="body">Body</div>
+                <div class="tab" data-tab="auth">Auth</div>
+            </div>
+            
+            <div class="tab-content active" id="params-tab">
+                <div id="params-container"></div>
+                <button class="add-param" id="add-param">Add Query Parameter</button>
+            </div>
+            
+            <div class="tab-content" id="headers-tab">
+                <div id="headers-container"></div>
+                <button class="add-param" id="add-header">Add Header</button>
+            </div>
+            
+            <div class="tab-content" id="body-tab">
+                <div class="form-group">
+                    <label for="content-type">Content Type</label>
+                    <select id="content-type">
+                        <option value="application/json">JSON</option>
+                        <option value="application/x-www-form-urlencoded">Form URL Encoded</option>
+                        <option value="text/plain">Plain Text</option>
+                        <option value="application/xml">XML</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="request-body">Request Body</label>
+                    <textarea id="request-body" placeholder='{
+  "key": "value"
+}'></textarea>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="auth-tab">
+                <div class="form-group">
+                    <label for="auth-type">Authentication Type</label>
+                    <select id="auth-type">
+                        <option value="none">None</option>
+                        <option value="basic">Basic Auth</option>
+                        <option value="bearer">Bearer Token</option>
+                        <option value="api-key">API Key</option>
+                    </select>
+                </div>
+                
+                <div id="auth-basic" class="auth-section" style="display: none;">
+                    <div class="form-group">
+                        <label for="basic-username">Username</label>
+                        <input type="text" id="basic-username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="basic-password">Password</label>
+                        <input type="password" id="basic-password" placeholder="Password">
+                    </div>
+                </div>
+                
+                <div id="auth-bearer" class="auth-section" style="display: none;">
+                    <div class="form-group">
+                        <label for="bearer-token">Token</label>
+                        <input type="text" id="bearer-token" placeholder="Your bearer token">
+                    </div>
+                </div>
+                
+                <div id="auth-api-key" class="auth-section" style="display: none;">
+                    <div class="form-group">
+                        <label for="api-key-name">Key Name</label>
+                        <input type="text" id="api-key-name" placeholder="X-API-Key">
+                    </div>
+                    <div class="form-group">
+                        <label for="api-key-value">Key Value</label>
+                        <input type="text" id="api-key-value" placeholder="Your API key">
+                    </div>
+                    <div class="form-group">
+                        <label for="api-key-location">Add to</label>
+                        <select id="api-key-location">
+                            <option value="header">Header</option>
+                            <option value="query">Query Parameters</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="send-request" class="main-button">Send Request</button>
+            
+            <div id="response-section" style="display: none;">
+                <div class="response-container">
+                    <div class="response-header">
+                        <div class="response-status" id="response-status"></div>
+                        <div class="response-time" id="response-time"></div>
+                    </div>
+                    <pre class="response-body" id="response-body"></pre>
+                    <button class="prettify-json" id="prettify-json">Prettify JSON</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="history-tab">
+            <button class="clear-history" id="clear-history">Clear History</button>
+            <div id="history-container">
+                <div class="no-history">No request history yet</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
